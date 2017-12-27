@@ -73,7 +73,6 @@ BurnerSDK.getInstance().launchSignupFlow(this); // this refers to an instance of
 ### Notes
 The min SDK for this Android SDK is 16.
 
-
 ### Resources
 Here are a list of the resources that pertain to developing with our API, once you have the access token:
 
