@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/dp_10"
+    android:paddingLeft="@dimen/dp_8"
+    android:paddingRight="@dimen/dp_8"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="adhoclabs.co.burnersamplesdk.SampleActivity"
+    tools:showIn="@layout/activity_sample">
+
+  <TextView
+      android:id="@+id/access_token"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="16sp"/>
+
+  <TextView
+      android:id="@+id/access_token_expires_in"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="16sp"/>
+
+  <TextView
+      android:id="@+id/phone_number"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="16sp"/>
+
+  <TextView
+      android:id="@+id/phone_number_expires_at"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="16sp"/>
+</LinearLayout>
