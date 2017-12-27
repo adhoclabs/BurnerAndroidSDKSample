@@ -54,9 +54,9 @@ public class SampleActivity extends AppCompatActivity {
       // Make sure the request was successful
       if (resultCode == RESULT_OK) {
         field1.setText(getString(R.string.token_is, bundle.getString(BurnerSDK.IntentParams.AUTH_TOKEN)));
-        field2.setText(getString(R.string.token_expires_in, bundle.getInt(BurnerSDK.IntentParams.AUTH_TOKEN_EXPIRES_IN)));
+        field2.setText(getString(R.string.token_expires_in, bundle.getInt(BurnerSDK.IntentParams.AUTH_TOKEN_EXPIRES_IN) / 1000));
         field3.setText(getString(R.string.phone_is, bundle.getString(BurnerSDK.IntentParams.PHONE_NUMBER)));
-        field4.setText(getString(R.string.phone_expires_at, new Date(bundle.getLong(BurnerSDK.IntentParams.PHONE_NUMBER_EXPIRES_AT))));
+        field4.setText(getString(R.string.phone_expires_at, new Date(1000 * bundle.getLong(BurnerSDK.IntentParams.PHONE_NUMBER_EXPIRES_AT))));
       } else { // oauth failed, get reason
         field1.setText(bundle.getString("reason"));
       }
