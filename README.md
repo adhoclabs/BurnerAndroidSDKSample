@@ -19,7 +19,16 @@ Now run the project, and you can click on the floating action button to start th
 
 ### Quick Start Guide to implementing the Burner SDK
 
-0. Download the SDK. The SDK should be available to you from the Burner team. Alternatively, in your `allProjects` declaration in your build.gradle, add our custom maven repository:
+0. Download the SDK. The SDK should be available to you from the Burner team. In your app/build.gradle, add the following in your repositories block if you haven't done so already:
+```
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+```
+
+Alternatively, if you are using the maven repo approach: In your `allProjects` declaration in your build.gradle, add our custom maven repository:
 
 ```
 maven {
@@ -31,17 +40,7 @@ maven {
 }
 ```
 
-```
-1. In your app/build.gradle, add the following in your repositories block if you haven't done so already:
-```
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
-```
-Alternatively, if you are using the maven repository approach (talk to your Burner rep), add the following in your build.gradle. Get the latest version number from your Burner rep.
-
+Add the following in your build.gradle. Get the latest version number from your Burner rep.
 ```
 implementation 'co.adhoclabs:burnersdk:<VERSION_NUMBER>@aar' 
 ```
