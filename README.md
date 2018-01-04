@@ -40,7 +40,7 @@ maven {
 }
 ```
 
-1B. Add the following in your build.gradle. Get the latest version number from your Burner rep.
+1B. Add the following in your build.gradle. Get the latest version number from the Burner team.
 ```
 implementation 'co.adhoclabs:burnersdk:<VERSION_NUMBER>@aar' 
 ```
@@ -64,7 +64,7 @@ implementation 'co.adhoclabs:burnersdk:<VERSION_NUMBER>@aar'
 BurnerSDK.getInstance().initialize("CLIENT_ID", "CLIENT_SECRET")
 ```
 
-4. Now you can direct your users to the create Burner flow in your activity where we will verify the user and create a sample Burner for them before returning back to you:
+4. Now you can direct your users to the create Burner flow in your activity where we will verify the user and create a Burner for them before returning back to you:
 ```
 BurnerSDK.getInstance().launchSignupFlow(this); // this refers to an instance of Activity
 ```
@@ -92,7 +92,7 @@ BurnerSDK.getInstance().launchSignupFlow(this); // this refers to an instance of
 ```
 
 ### Notes
-The min SDK for this Android SDK is 16.
+The minimum SDK for this Android SDK is 16.
 
 ### Resources
 Here are a list of the resources that pertain to developing with our API, once you have the access token:
