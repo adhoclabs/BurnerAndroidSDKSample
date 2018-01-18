@@ -69,7 +69,7 @@ BurnerSDK.getInstance().initialize("CLIENT_ID", "CLIENT_SECRET")
 BurnerSDK.getInstance().launchSignupFlow(this); // this refers to an instance of Activity
 ```
 
-5. In your onActivityResult, handle the results as follows. Note you will get the following fields for you to use from the `bundle`: (`BurnerSDK.IntentParams.AUTH_TOKEN`, `BurnerSDK.IntentParams.AUTH_TOKEN_EXPIRES_IN`, `BurnerSDK.IntentParams.PHONE_NUMBER`, `BurnerSDK.IntentParams.PHONE_NUMBER_EXPIRES_AT`)
+5. In your onActivityResult, handle the results as follows. Note you will get the following fields for you to use from the `bundle`: (`BurnerSDK.IntentParams.AUTH_TOKEN`, `BurnerSDK.IntentParams.AUTH_TOKEN_EXPIRES_IN`, `BurnerSDK.IntentParams.PHONE_NUMBER`, `BurnerSDK.IntentParams.PHONE_NUMBER_EXPIRES_AT`). Please note that in certain (uncommon) situations, the `PHONE_NUMBER` might be null -- that's because the exising Burner user doesn't have an active Burner anymore. In that case please handle accordingly. New Burner users will always have a phone number since they would have gone through the number creation flow at the point of `onActivityResult`
 ```
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -78,12 +78,20 @@ BurnerSDK.getInstance().launchSignupFlow(this); // this refers to an instance of
       Bundle bundle = data.getExtras();
       // Make sure the request was successful
       if (resultCode == RESULT_OK) {
-	// this is your access token
         field1.setText(getString(R.string.token_is, bundle.getString(BurnerSDK.IntentParams.AUTH_TOKEN)));
 
         field2.setText(getString(R.string.token_expires_in, bundle.getInt(BurnerSDK.IntentParams.AUTH_TOKEN_EXPIRES_IN) / 1000));
-        field3.setText(getString(R.string.phone_is, bundle.getString(BurnerSDK.IntentParams.PHONE_NUMBER)));
-        field4.setText(getString(R.string.phone_expires_at, new Date(1000 * bundle.getLong(BurnerSDK.IntentParams.PHONE_NUMBER_EXPIRES_AT))));
+
+        String phoneNumber = bundle.getString(BurnerSDK.IntentParams.PHONE_NUMBER);
+        if (phoneNumber != null) { // do a check here, phoneNumber could be null
+          field3.setText(getString(R.string.phone_is, phoneNumber));
+        }
+
+        long phoneExpiry = bundle.getLong(BurnerSDK.IntentParams.PHONE_NUMBER_EXPIRES_AT);
+        if (phoneExpiry != 0L) { // if phoneNumber is null then phoneExpiry will not be populated either
+          field4.setText(getString(R.string.phone_expires_at, new Date(1000 * phoneExpiry)));
+        }
+
       } else { // oauth failed, get reason
         field1.setText(bundle.getString("reason"));
       }
