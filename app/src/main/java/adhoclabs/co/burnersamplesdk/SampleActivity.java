@@ -16,6 +16,7 @@ public class SampleActivity extends AppCompatActivity {
 
   private static final String CLIENT_ID = "<YOUR CLIENT ID HERE>";
   private static final String CLIENT_SECRET = "<YOUR CLIENT SECRET HERE>";
+  private static final String SCOPES = "<YOUR SCOPES HERE>"; // ie. "burners:read burners:write contacts:read contacts:write"
 
   private BurnerSDK burnerSDK;
   private TextView field1;
@@ -28,7 +29,7 @@ public class SampleActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sample);
     burnerSDK = BurnerSDK.getInstance();
-    burnerSDK.initialize(CLIENT_ID, CLIENT_SECRET);
+    burnerSDK.initialize(CLIENT_ID, CLIENT_SECRET, SCOPES);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
@@ -54,9 +55,19 @@ public class SampleActivity extends AppCompatActivity {
       // Make sure the request was successful
       if (resultCode == RESULT_OK) {
         field1.setText(getString(R.string.token_is, bundle.getString(BurnerSDK.IntentParams.AUTH_TOKEN)));
+
         field2.setText(getString(R.string.token_expires_in, bundle.getInt(BurnerSDK.IntentParams.AUTH_TOKEN_EXPIRES_IN) / 1000));
-        field3.setText(getString(R.string.phone_is, bundle.getString(BurnerSDK.IntentParams.PHONE_NUMBER)));
-        field4.setText(getString(R.string.phone_expires_at, new Date(1000 * bundle.getLong(BurnerSDK.IntentParams.PHONE_NUMBER_EXPIRES_AT))));
+
+        String phoneNumber = bundle.getString(BurnerSDK.IntentParams.PHONE_NUMBER);
+        if (phoneNumber != null) {
+          field3.setText(getString(R.string.phone_is, phoneNumber));
+        }
+
+        long phoneExpiry = bundle.getLong(BurnerSDK.IntentParams.PHONE_NUMBER_EXPIRES_AT);
+        if (phoneExpiry != 0L) {
+          field4.setText(getString(R.string.phone_expires_at, new Date(1000 * phoneExpiry)));
+        }
+
       } else { // oauth failed, get reason
         field1.setText(bundle.getString("reason"));
       }
