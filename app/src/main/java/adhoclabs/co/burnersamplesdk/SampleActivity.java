@@ -21,8 +21,6 @@ public class SampleActivity extends AppCompatActivity {
   private BurnerSDK burnerSDK;
   private TextView field1;
   private TextView field2;
-  private TextView field3;
-  private TextView field4;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +31,14 @@ public class SampleActivity extends AppCompatActivity {
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    field1 = findViewById(R.id.access_token);
-    field2 = findViewById(R.id.access_token_expires_in);
-    field3 = findViewById(R.id.phone_number);
-    field4 = findViewById(R.id.phone_number_expires_at);
+    field1 = findViewById(R.id.phone_number);
+    field2 = findViewById(R.id.phone_number_expires_at);
 
     FloatingActionButton fab = findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        burnerSDK.launchSignupFlow(SampleActivity.this);
+        burnerSDK.start(SampleActivity.this);
       }
     });
   }
@@ -54,18 +50,14 @@ public class SampleActivity extends AppCompatActivity {
       Bundle bundle = data.getExtras();
       // Make sure the request was successful
       if (resultCode == RESULT_OK) {
-        field1.setText(getString(R.string.token_is, bundle.getString(BurnerSDK.IntentParams.AUTH_TOKEN)));
-
-        field2.setText(getString(R.string.token_expires_in, bundle.getInt(BurnerSDK.IntentParams.AUTH_TOKEN_EXPIRES_IN) / 1000));
-
         String phoneNumber = bundle.getString(BurnerSDK.IntentParams.PHONE_NUMBER);
         if (phoneNumber != null) {
-          field3.setText(getString(R.string.phone_is, phoneNumber));
+          field1.setText(getString(R.string.phone_is, phoneNumber));
         }
 
         long phoneExpiry = bundle.getLong(BurnerSDK.IntentParams.PHONE_NUMBER_EXPIRES_AT);
         if (phoneExpiry != 0L) {
-          field4.setText(getString(R.string.phone_expires_at, new Date(1000 * phoneExpiry)));
+          field2.setText(getString(R.string.phone_expires_at, new Date(1000 * phoneExpiry)));
         }
 
       } else { // oauth failed, get reason

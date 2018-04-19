@@ -27,6 +27,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         >
     </activity>
+    <activity android:name="co.adhoclabs.burnersdk.activities.SelectNumberActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
   </application>
 
 </manifest>

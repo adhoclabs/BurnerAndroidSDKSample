@@ -1,8 +1,6 @@
 <resources>
   <string name="app_name">BurnerSampleSDK</string>
   <string name="title_activity_sample">SampleActivity</string>
-  <string name="token_is">Token is %1$s</string>
-  <string name="token_expires_in">Token Expire in %1$d seconds</string>
   <string name="phone_is">Phone is %1$s</string>
   <string name="phone_expires_at">Phone Expires at %1$s</string>
 </resources>
