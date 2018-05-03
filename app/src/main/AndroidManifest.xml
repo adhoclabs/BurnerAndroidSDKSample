@@ -24,10 +24,15 @@
 
     <activity
         android:name="co.adhoclabs.burnersdk.activities.AuthorizationActivity"
+        android:screenOrientation="portrait"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         >
     </activity>
-    <activity android:name="co.adhoclabs.burnersdk.activities.SelectNumberActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+    <activity
+        android:screenOrientation="portrait"
+        android:name="co.adhoclabs.burnersdk.activities.SelectNumberActivity"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        />
 
   </application>
 

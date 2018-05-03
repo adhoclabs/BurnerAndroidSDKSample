@@ -49,13 +49,20 @@ implementation 'co.adhoclabs:burnersdk:<VERSION_NUMBER>@aar'
 ```
 <uses-permission android:name="android.permission.INTERNET" />
  
+Please note you will need to add our activities in your app as well. Further note that the orientation should be portrait only as SDK/Oauth flow is optimized for portrait mode only.
 // inside <application>
 ...
-    <activity
-        android:name="co.adhoclabs.burnersdk.activities.AuthorizationActivity"
-        >
-    </activity>
-    <activity android:name="co.adhoclabs.burnersdk.activities.SelectNumberActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+<activity
+  android:name="co.adhoclabs.burnersdk.activities.AuthorizationActivity"
+  android:screenOrientation="portrait"
+  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+>
+</activity>
+<activity
+  android:screenOrientation="portrait"
+  android:name="co.adhoclabs.burnersdk.activities.SelectNumberActivity"
+  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+/>
 ...
 </application>
 ```
