@@ -16,7 +16,7 @@ public class SampleActivity extends AppCompatActivity {
 
   private static final String CLIENT_ID = "<YOUR CLIENT ID HERE>";
   private static final String CLIENT_SECRET = "<YOUR CLIENT SECRET HERE>";
-  private static final String SCOPES = "<YOUR SCOPES HERE>"; // ie. "burners:read burners:write contacts:read contacts:write"
+  private static final String SCOPES = "burners:read";
 
   private BurnerSDK burnerSDK;
   private TextView field1;
