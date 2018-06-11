@@ -1,6 +1,8 @@
 <resources>
   <string name="app_name">BurnerSampleSDK</string>
   <string name="title_activity_sample">SampleActivity</string>
-  <string name="phone_is">Phone is %1$s</string>
+  <string name="phone_is">Phone selected is %1$s</string>
   <string name="phone_expires_at">Phone Expires at %1$s</string>
+  <string name="remove_saved_credentials">Remove saved credentials</string>
+  <string name="no_number_selected">No number selected. Click on the bottom right button to begin!</string>
 </resources>
