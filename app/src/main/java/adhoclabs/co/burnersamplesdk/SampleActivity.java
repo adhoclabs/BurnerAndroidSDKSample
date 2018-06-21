@@ -14,9 +14,9 @@ import co.adhoclabs.burnersdk.BurnerSDK;
 
 public class SampleActivity extends AppCompatActivity {
 
-  private static final String CLIENT_ID = "<YOUR CLIENT ID HERE>";
-  private static final String CLIENT_SECRET = "<YOUR CLIENT SECRET HERE>";
-  private static final String SCOPES = "burners:read";
+  private static final String CLIENT_ID = "cplus";
+  private static final String CLIENT_SECRET = "qZQd9DI3Bz1I8A";
+  private static final String SCOPES = "burners:read burners:write contacts:read contacts:write";
 
   private BurnerSDK burnerSDK;
   private TextView field1;
@@ -75,7 +75,6 @@ public class SampleActivity extends AppCompatActivity {
         if (phoneNumber != null) {
           field1.setText(getString(R.string.phone_is, phoneNumber));
         }
-
       } else { // oauth failed, get reason
         field1.setText(bundle.getString("reason"));
       }

@@ -87,7 +87,21 @@ BurnerSDK.getInstance().start(this); // this refers to an instance of Activity
 ```
 
 ### Notes
-The minimum SDK for this Android SDK is 16.
+- The minimum SDK for this Android SDK is 16.
+- If you don't want to manually embed the AndroidSDK library, add the following to your `build.gradle` under `allprojects->repositories`: 
+```
+maven {
+            url "http://nexus.burnerapp.com:8080/content/repositories/AndroidSDK"
+            credentials {
+                username 'sdkuser'
+                password 'Yc79%0bL1'
+            }
+        }
+```
+
+and inside `app/build.gradle`, under `dependencies`, add `implementation 'co.adhoclabs:burnersdk:1.1.1@aar` (Make sure the version number matches).
+Note: If using Maven, the Sample Project points to production by default.
+
 
 ### Resources
 Here are a list of the resources that pertain to developing with our API, once you have the access token:
