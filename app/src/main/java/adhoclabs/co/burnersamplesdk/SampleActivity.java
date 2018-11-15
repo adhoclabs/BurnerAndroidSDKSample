@@ -14,9 +14,9 @@ import co.adhoclabs.burnersdk.BurnerSDK;
 
 public class SampleActivity extends AppCompatActivity {
 
-  private static final String CLIENT_ID = "cplus";
-  private static final String CLIENT_SECRET = "qZQd9DI3Bz1I8A";
-  private static final String SCOPES = "burners:read burners:write contacts:read contacts:write";
+  private static final String CLIENT_ID = BuildConfig.CLIENT_ID;
+  private static final String CLIENT_SECRET = BuildConfig.CLIENT_SECRET;
+  private static final String SCOPES = BuildConfig.SCOPES;
 
   private BurnerSDK burnerSDK;
   private TextView field1;

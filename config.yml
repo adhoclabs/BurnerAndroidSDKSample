@@ -1,0 +1,43 @@
+version: 2
+jobs:
+  #test
+  build:
+    docker:
+      - image: circleci/android:api-26-alpha
+    resource_class: medium
+    working_directory: ~/repo
+    environment:
+      # Customize the JVM maximum heap limit
+      _JAVA_OPTIONS: "-Xmx1024m"
+      TERM: dumb
+    steps:    
+      - checkout:
+          path: ~/repo
+      - run: gem install bundler  
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: ./gradlew dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+      - run: bundle check || bundle install --path vendor/bundle
+      
+      # - run: 
+      #     name: Build and push to fabric
+      #     command: bundle exec fastlane beta --verbose
+      
+# workflows:
+#   version: 2
+#   beta_build:
+#     jobs:
+#       - build:
+#           filters:
+#             branches:
+#               only:
+#                 - /release\/.*/
