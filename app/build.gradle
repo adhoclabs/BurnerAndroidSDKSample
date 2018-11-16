@@ -58,7 +58,6 @@ repositories {
 }
 apply plugin: 'io.fabric'
 
-
 dependencies {
     implementation fileTree(dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
