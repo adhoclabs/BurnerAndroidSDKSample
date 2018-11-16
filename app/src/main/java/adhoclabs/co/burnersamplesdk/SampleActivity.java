@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 import co.adhoclabs.burnersdk.BurnerSDK;
 
@@ -29,6 +31,7 @@ public class SampleActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sample);
     burnerSDK = BurnerSDK.getInstance();
+    Fabric.with(this, new Crashlytics());
     burnerSDK.initialize(CLIENT_ID, CLIENT_SECRET, SCOPES);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);

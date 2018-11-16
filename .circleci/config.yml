@@ -28,16 +28,16 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
       - run: bundle check || bundle install --path vendor/bundle
       
-      # - run: 
-      #     name: Build and push to fabric
-      #     command: bundle exec fastlane beta --verbose
+      - run: 
+          name: Build and push to fabric
+          command: bundle exec fastlane beta --verbose
       
-# workflows:
-#   version: 2
-#   beta_build:
-#     jobs:
-#       - build:
-#           filters:
-#             branches:
-#               only:
-#                 - /release\/.*/
+workflows:
+  version: 2
+  beta_build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - /release\/.*/
