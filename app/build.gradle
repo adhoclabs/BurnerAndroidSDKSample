@@ -11,25 +11,63 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug{
+            buildConfigField "String", "CLIENT_ID","\"cplus\""
+            buildConfigField "String", "CLIENT_SECRET", "\"qZQd9DI3Bz1I8A\""
+            buildConfigField "String", "SCOPES", "\"burners:read burners:write contacts:read contacts:write\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "CLIENT_ID", "\"cplus\""
+            buildConfigField "String", "CLIENT_SECRET", "\"qZQd9DI3Bz1I8A\""
+            buildConfigField "String", "SCOPES", "\"burners:read burners:write contacts:read contacts:write\""
         }
     }
 }
 
 repositories {
-    flatDir {
-        dirs 'libs'
+    maven {
+        url "http://nexus.burnerapp.com:8080/content/repositories/AndroidSDK"
+        credentials {
+            username 'sdkuser'
+            password 'Yc79%0bL1'
+        }
+        authentication {
+            basic(BasicAuthentication)
+        }
     }
 }
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        // These docs use an open ended version so that our plugin
+        // can be updated quickly in response to Android tooling updates
+
+        // We recommend changing it to the latest version from our changelog:
+        // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+apply plugin: 'io.fabric'
 
 dependencies {
     implementation fileTree(dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:design:26.1.0'
+    implementation 'co.adhoclabs:burnersdk:1.1.1@aar'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.6@aar') {
+        transitive = true;
+    }
 }

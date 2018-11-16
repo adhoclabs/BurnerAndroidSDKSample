@@ -9,14 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 import co.adhoclabs.burnersdk.BurnerSDK;
 
 public class SampleActivity extends AppCompatActivity {
 
-  private static final String CLIENT_ID = "cplus";
-  private static final String CLIENT_SECRET = "qZQd9DI3Bz1I8A";
-  private static final String SCOPES = "burners:read burners:write contacts:read contacts:write";
+  private static final String CLIENT_ID = BuildConfig.CLIENT_ID;
+  private static final String CLIENT_SECRET = BuildConfig.CLIENT_SECRET;
+  private static final String SCOPES = BuildConfig.SCOPES;
 
   private BurnerSDK burnerSDK;
   private TextView field1;
@@ -29,6 +31,7 @@ public class SampleActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sample);
     burnerSDK = BurnerSDK.getInstance();
+    Fabric.with(this, new Crashlytics());
     burnerSDK.initialize(CLIENT_ID, CLIENT_SECRET, SCOPES);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: Verifying fastlane version" time="0.00888">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.001051">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: build_android_app" time="7.083964">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: crashlytics" time="12.530267">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
