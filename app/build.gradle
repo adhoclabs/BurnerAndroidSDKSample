@@ -7,12 +7,11 @@ android {
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 2
-        versionName "2.0"
+        versionName "QA2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug{
-            buildConfigField "String", "VERSION_NAME","\"Debug\""
             buildConfigField "String", "CLIENT_ID","\"cplus\""
             buildConfigField "String", "CLIENT_SECRET", "\"4rWU39GDuyb1jN\""
             buildConfigField "String", "SCOPES", "\"burners:read burners:write contacts:read contacts:write\""
